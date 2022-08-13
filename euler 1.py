@@ -27,21 +27,26 @@ def euler1(n):
 def GeneralEuler1(n, bases):
     total = 0
 
-    for i in range(len(bases)):
+    # For each of the things we're finding multiples of, apply the formula to get the sum of all the multiples.
+    for i in bases:
         total += (
-            (bases[i - 1] / 2)
-            * (math.floor(n / bases[i - 1]))
-            * (math.floor(bases[i - 1]) + 1)
+            (i / 2)
+            * (math.floor(n / i))
+            * (math.floor(n / i) + 1)
         )
-    for i in range(len(bases)):
-        for j in range(len(bases) - 1):
-            composite = bases[i - 1] * bases[j - 1]
-            total -= (
-                (composite / 2)
-                * (math.floor(n / composite))
-                * (math.floor(n / composite) + 1)
-            )
+    # Account for double counting
+    for i in range(len(bases)-1):
+        for j in range(i, len(bases)):
+            if i != j:
+                composite = bases[i] * bases[j]
+                #print(composite)
+                total -= (
+                    (composite / 2)
+                    * (math.floor(n / composite))
+                    * (math.floor(n / composite) + 1)
+                )
     # This for loop (tentatively) appears to be working as intended
+    # Failsafe to make sure it doesn't include n itself (specific condition for project euler)
     for i in bases:
         if n % i == 0:
             total -= n

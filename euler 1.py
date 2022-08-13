@@ -41,6 +41,7 @@ def GeneralEuler1(n, bases):
                 * (math.floor(n / composite))
                 * (math.floor(n / composite) + 1)
             )
+    # This for loop appears to be working as intended
     for i in bases:
         if n % i == 0:
             total -= n

@@ -3,5 +3,31 @@
 
 # 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 
-#By considering the terms in the Fibonacci #sequence whose values do not exceed four 
+#By considering the terms in the Fibonacci sequence whose values do not exceed four 
 #million, find the sum of the even-valued terms.
+
+#Basic recursive version to find nth term in sequence, assuming 1 is the 0th term.
+def RecursiveFibonnaci(n):
+    if n == 0:
+         return(1)
+    elif n == 1:
+         return(2)
+    else:
+         fi = 1
+         fiplus1 = 2
+         for i in range(1, n):
+            nextterm = fi + fiplus1
+            fi = fiplus1
+            fiplus1 = nextterm
+    return(fiplus1)
+
+# Generates a list of the first n Fibonnaci terms to make sure it's returning, like, actual values    
+def RecursiveOutputTest(n):
+    FibonnaciTerms = []
+    for i in range(n):
+        FibonnaciTerms.append(RecursiveFibonnaci(i))
+    return(FibonnaciTerms)
+
+
+#Debug Calls:
+print(RecursiveOutputTest(10))
